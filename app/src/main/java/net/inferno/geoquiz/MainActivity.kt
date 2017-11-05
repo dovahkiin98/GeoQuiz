@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         nextButton.isEnabled = currentFragment != 10
         previousButton.isEnabled = currentFragment != 0
 
-        if (currentFragment != 10) indicatorText.text = "${currentFragment + 1} of 10"
+        if (currentFragment != 10) indicatorText.text = resources.getString(R.string.indicator, (currentFragment + 1), 10)
     }
 
     private fun loadFragments() {
