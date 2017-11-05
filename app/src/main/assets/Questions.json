@@ -19,7 +19,7 @@
         "Answer": "1"
     },
     {
-        "Text": "Select cities that are in Italy",
+        "Text": "Which of these cities are in Italy?",
         "Type": 1,
         "Options": [
             {
@@ -44,7 +44,7 @@
         "Answer": "France"
     },
     {
-        "Text": "What is the approximate population of Romania",
+        "Text": "What is the approximate population of Romania?",
         "Type": 2,
         "Options": [
             {
@@ -91,13 +91,13 @@
         "Answer": "034"
     },
     {
-        "Text": "What is the capital of Spain",
+        "Text": "What is the capital of Spain?",
         "Type": 0,
         "Options": [],
         "Answer": "Madrid"
     },
     {
-        "Text": "What is the capital of Catalonia",
+        "Text": "What is the capital of Catalonia?",
         "Type": 2,
         "Options": [
             {
