@@ -1,9 +1,12 @@
-package net.inferno.geoquiz
+package net.inferno.geoquiz.activities
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import net.inferno.geoquiz.R
+import net.inferno.geoquiz.data.QuestionsData
+import net.inferno.geoquiz.fragments.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,7 +21,6 @@ class MainActivity : AppCompatActivity() {
             currentFragment = savedInstanceState.getInt("INDEX")
             checkButtons()
         } else {
-            QuestionsData.init(this)
             supportFragmentManager.beginTransaction()
                     .replace(R.id.container, WelcomeFragment())
                     .commit()

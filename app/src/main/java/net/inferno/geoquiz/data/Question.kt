@@ -1,4 +1,4 @@
-package net.inferno.geoquiz
+package net.inferno.geoquiz.data
 
 import org.json.JSONObject
 

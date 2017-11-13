@@ -1,4 +1,4 @@
-package net.inferno.geoquiz
+package net.inferno.geoquiz.data
 
 import android.content.Context
 import org.json.JSONArray

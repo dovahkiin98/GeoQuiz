@@ -1,4 +1,4 @@
-package net.inferno.geoquiz
+package net.inferno.geoquiz.fragments
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.RadioButton
 import kotlinx.android.synthetic.main.fragment_single_choice.*
+import net.inferno.geoquiz.data.QuestionsData
+import net.inferno.geoquiz.R
 
 class SingleChoiceFragment : Fragment() {
 
