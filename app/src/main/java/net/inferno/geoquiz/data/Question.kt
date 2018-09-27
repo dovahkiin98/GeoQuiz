@@ -2,20 +2,19 @@ package net.inferno.geoquiz.data
 
 import org.json.JSONObject
 
-class Question(jsonObject: JSONObject) {
+class Question(
+    var text: String = "",
+    var type: Int = 0,
+    var answer: String = "",
+    var options: Array<String> = arrayOf()
+) {
+    constructor(jsonObject: JSONObject) : this(
+        jsonObject.getString("Text"),
+        jsonObject.getInt("Type"),
+        jsonObject.getString("Answer")
+    ) {
+        val options = jsonObject.getJSONObject("Options")
 
-    var text = ""
-    var type = 0
-    var answer = ""
-    var options = arrayOf<String>()
-
-    init {
-        text = jsonObject.getString("Text")
-        type = jsonObject.getInt("Type")
-        answer = jsonObject.getString("Answer")
-        val options = jsonObject.getJSONArray("Options")
-
-        for (i in 0 until options.length())
-            this.options += options.getJSONObject(i).getString("Text")
+        for (i in 0 until options.length()) this.options += options.getString("$i")
     }
 }

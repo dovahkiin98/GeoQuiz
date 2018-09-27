@@ -1,49 +1,36 @@
 package net.inferno.geoquiz.fragments
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.RadioButton
+import androidx.core.view.forEachIndexed
+import androidx.core.view.get
+import androidx.core.view.plusAssign
 import kotlinx.android.synthetic.main.fragment_single_choice.*
-import net.inferno.geoquiz.data.QuestionsData
 import net.inferno.geoquiz.R
+import net.inferno.geoquiz.data.QuestionsData
 
-class SingleChoiceFragment : Fragment() {
+class SingleChoiceFragment : QuestionFragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? =
-            inflater.inflate(R.layout.fragment_single_choice, container, false)
+    override val layoutRes = R.layout.fragment_single_choice
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        val index = arguments.getInt("INDEX")
-        val question = QuestionsData.questions[index]
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         questionText.text = question.text
-        val answer = QuestionsData.answers[index]
-        for (i in 0 until question.options.size) {
-            val radioButton = RadioButton(context)
-            radioButton.layoutParams = LinearLayout.LayoutParams(-1, -2)
-            radioButton.text = question.options[i]
-            answers.addView(radioButton)
-            if (answer == i.toString()) radioButton.isChecked = true
+        question.options.forEachIndexed { i, it ->
+            answers += RadioButton(context).apply {
+                layoutParams = LinearLayout.LayoutParams(-1, -2)
+                text = it
+            }
+            (answers[i] as RadioButton).isChecked = QuestionsData.answers[index] == "$i"
         }
-        answers.setOnCheckedChangeListener { _, _ -> QuestionsData.answers[index] = getAnswer() }
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putString("ANSWER", getAnswer())
-    }
-
-    private fun getAnswer(): String {
+    override fun onDestroyView() {
+        super.onDestroyView()
         var string = ""
-        for (i in 0 until answers.childCount) {
-            val radioButton = answers.getChildAt(i) as RadioButton
-            if (radioButton.isChecked) string = i.toString()
-        }
-        return string
+        answers.forEachIndexed { index, view -> if ((view as RadioButton).isChecked) string = "$index" }
+        QuestionsData.answers[index] = string
     }
 }

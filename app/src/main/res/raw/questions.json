@@ -1,0 +1,100 @@
+[
+    {
+        "Text": "What is the capital of Ukraine?",
+        "Type": 2,
+        "Options": {
+            "0": "Lviv",
+            "1": "Kiev",
+            "2": "Eger",
+            "3": "Budapest"
+        },
+        "Answer": "1"
+    },
+    {
+        "Text": "Which of these cities are in Italy?",
+        "Type": 1,
+        "Options": {
+            "0": "Venice",
+            "1": "Valencia",
+            "2": "Rome",
+            "3": "Nice"
+        },
+        "Answer": "02"
+    },
+    {
+        "Text": "What country is the city Lyon in?",
+        "Type": 0,
+        "Options": {},
+        "Answer": "France"
+    },
+    {
+        "Text": "What is the approximate population of Romania?",
+        "Type": 2,
+        "Options": {
+            "0": "12 Million",
+            "1": "21 Million",
+            "2": "15 Million",
+            "3": "19 Million"
+        },
+        "Answer": "3"
+    },
+    {
+        "Text": "What is the country below Slovakia?",
+        "Type": 0,
+        "Options": {},
+        "Answer": "Hungary"
+    },
+    {
+        "Text": "Which of these countries belong to the United Kingdom?",
+        "Type": 1,
+        "Options": {
+            "0": "Wales",
+            "1": "Norway",
+            "2": "Iceland",
+            "3": "England",
+            "4": "Ireland"
+        },
+        "Answer": "034"
+    },
+    {
+        "Text": "What is the capital of Spain?",
+        "Type": 0,
+        "Options": {},
+        "Answer": "Madrid"
+    },
+    {
+        "Text": "What is the capital of Catalonia?",
+        "Type": 2,
+        "Options": {
+            "0": "Barcelona",
+            "1": "Madrid",
+            "2": "Catalona",
+            "3": "Girona"
+        },
+        "Answer": "0"
+    },
+    {
+        "Text": "Which of these countries is the smallest?",
+        "Type": 2,
+        "Options": {
+            "0": "Austria",
+            "1": "Hungary",
+            "2": "Czechia",
+            "3": "Serbia"
+        },
+        "Answer": "2"
+    },
+    {
+        "Text": "Which of these countries is neighbor to Switzerland?",
+        "Type": 1,
+        "Options": {
+            "0": "Germany",
+            "1": "Slovakia",
+            "2": "France",
+            "3": "Liechtenstein",
+            "4": "Spain",
+            "5": "Belgium"
+        },
+        "Answer": "023"
+    }
+]
