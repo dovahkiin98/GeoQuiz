@@ -3,30 +3,103 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 28
+    signingConfigs {
+        testKey {
+            keyAlias 'key0'
+            keyPassword '123456'
+            storeFile file('../testkey.jks')
+            storePassword '123456'
+        }
+    }
+
+    compileSdkVersion 29
+
     defaultConfig {
         applicationId "net.inferno.geoquiz"
         minSdkVersion 19
-        targetSdkVersion 28
-        versionCode 1
+        targetSdkVersion 29
+        versionCode 3
+
         vectorDrawables.useSupportLibrary = true
-        versionName "1.0B"
+        versionName "1.0.3"
     }
+
+    flavorDimensions "dev"
+
+    productFlavors {
+        dev {
+            dimension "dev"
+
+            minSdkVersion 28
+
+            versionNameSuffix '-dev' + "-" + new Date().format('dd-MM-yyyy')
+
+            buildConfigField "boolean", "DEV", "true"
+        }
+        deploy {
+            dimension "dev"
+
+            minSdkVersion 21
+
+            buildConfigField "boolean", "DEV", "false"
+        }
+    }
+
     buildTypes {
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            debuggable true
+        }
+
+        preRelease {
+            minifyEnabled true
+            shrinkResources true
+            debuggable true
+            versionNameSuffix "-" + new Date().format('dd-MM-yyyy')
+
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.testKey
+        }
+
         release {
             minifyEnabled true
             shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.testKey
         }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
-    implementation "androidx.core:core-ktx:${versions.support}"
-    implementation "androidx.appcompat:appcompat:${versions.support}"
-    implementation "com.google.android.material:material:${versions.support}"
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'org.jetbrains.anko:anko-commons:0.10.6'
+    //region Local
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    //endregion
+
+    //region Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+    //endregion
+
+    //region AndroidX
+    implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    implementation "androidx.core:core-ktx:$coreVersion"
+    implementation "androidx.fragment:fragment-ktx:$fragmentVersion"
+    implementation "androidx.preference:preference-ktx:$preferencesVersion"
+
+    implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+    implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
+    //endregion
+
+    //region Google
+    implementation "com.google.android.material:material:$materialVersion"
+    //endregion
 }

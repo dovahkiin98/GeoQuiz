@@ -1,4 +1,4 @@
-package net.inferno.geoquiz.fragments
+package net.inferno.geoquiz.fragment
 
 import android.os.Bundle
 import android.view.View
@@ -6,9 +6,7 @@ import kotlinx.android.synthetic.main.fragment_text.*
 import net.inferno.geoquiz.R
 import net.inferno.geoquiz.data.QuestionsData
 
-class TextFragment : QuestionFragment() {
-
-    override val layoutRes = R.layout.fragment_text
+class TextFragment : QuestionFragment(R.layout.fragment_text) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

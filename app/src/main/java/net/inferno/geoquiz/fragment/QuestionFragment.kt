@@ -1,27 +1,23 @@
-package net.inferno.geoquiz.fragments
+package net.inferno.geoquiz.fragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.annotation.CallSuper
+import androidx.annotation.LayoutRes
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import net.inferno.geoquiz.data.Question
 import net.inferno.geoquiz.data.QuestionsData
+import net.inferno.geoquiz.model.Question
+import java.security.InvalidParameterException
 
-open class QuestionFragment : Fragment() {
+open class QuestionFragment(@LayoutRes contentLayoutId: Int) : Fragment(contentLayoutId) {
 
-    protected open val layoutRes: Int = 0
     protected lateinit var question: Question
     protected var index = 0
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
-        inflater.inflate(layoutRes, container, false)
-
     @CallSuper
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        index = arguments!!.getInt("INDEX")
+        index = requireArguments().getInt("INDEX")
         question = QuestionsData.questions[index]
     }
 
@@ -30,7 +26,7 @@ open class QuestionFragment : Fragment() {
             0 -> TextFragment()
             1 -> MultiChoiceFragment()
             2 -> SingleChoiceFragment()
-            else -> QuestionFragment()
+            else -> throw InvalidParameterException("Required type is invalid")
         }.apply { arguments = bundleOf("INDEX" to index) }
     }
 }

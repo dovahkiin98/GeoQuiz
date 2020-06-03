@@ -7,7 +7,7 @@
     android:paddingTop="8dp"
     android:paddingEnd="16dp"
     android:paddingBottom="8dp"
-    tools:context="net.inferno.geoquiz.fragments.MultiChoiceFragment">
+    tools:context="net.inferno.geoquiz.fragment.MultiChoiceFragment">
 
     <TextView
         android:id="@+id/questionText"

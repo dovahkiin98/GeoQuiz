@@ -2,6 +2,7 @@ package net.inferno.geoquiz.data
 
 import android.content.Context
 import net.inferno.geoquiz.R
+import net.inferno.geoquiz.model.Question
 import org.json.JSONArray
 import java.util.*
 

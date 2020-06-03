@@ -1,4 +1,4 @@
-package net.inferno.geoquiz.data
+package net.inferno.geoquiz.model
 
 import org.json.JSONObject
 
@@ -6,7 +6,7 @@ class Question(
     var text: String = "",
     var type: Int = 0,
     var answer: String = "",
-    var options: Array<String> = arrayOf()
+    var options: MutableList<String> = mutableListOf(),
 ) {
     constructor(jsonObject: JSONObject) : this(
         jsonObject.getString("Text"),
@@ -15,6 +15,8 @@ class Question(
     ) {
         val options = jsonObject.getJSONObject("Options")
 
-        for (i in 0 until options.length()) this.options += options.getString("$i")
+        for (i in 0 until options.length()) this.options.add(options.getString("$i"))
+
+        this.options.shuffle()
     }
 }
